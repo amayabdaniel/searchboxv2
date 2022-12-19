@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { getPosts } from './api/axios';
+import { useState, useEffect } from "react";
 import './App.css';
+import Searchbar from './components/Searchbar';
 
 function App() {
+  const [ posts, setPosts ] = useState([]);
+  const [ searchResults, setSearchResults] = useState([]);
+
+    useEffect(() => {
+        getPosts().then(json => {
+          setPosts(json)
+          return json;
+        }).then(json => {
+            setSearchResults(json)
+        })
+      }, [])
+      
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Searchbar placeholder="Enter text..." data={posts}/>
     </div>
   );
 }
