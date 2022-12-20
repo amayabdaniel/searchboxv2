@@ -5,6 +5,7 @@ import Searchbar from './components/Searchbar';
 
 function App() {
   const [ posts, setPosts ] = useState([]);
+  // eslint-disable-next-line
   const [ searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
@@ -15,10 +16,14 @@ function App() {
             setSearchResults(json)
         })
       }, [])
-      
+
   return (
     <div className="App">
-      <Searchbar placeholder="Enter text..." data={posts}/>
+      <Searchbar
+        placeholder="Enter text..."
+        data={posts}
+        setSearchResults={setSearchResults}
+      />
     </div>
   );
 }

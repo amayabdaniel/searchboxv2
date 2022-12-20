@@ -1,10 +1,9 @@
 import axios from "axios";
 
-export const api = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com'
-})
-
 export const getPosts = async () => {
-    const response = await api.get("/posts");
-    return response.data
+    const api_url = "https://jsonplaceholder.typicode.com/posts";
+    const response = await axios.get(api_url);
+    return response.data;
 }
+
+
